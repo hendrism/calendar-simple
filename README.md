@@ -9,6 +9,7 @@ A minimal, installable web-based calendar app for quick week/day/month views and
 - **Week / Day / Month views** toggle  
 - **One-off** and **simple recurring** events (daily/weekly/monthly)  
 - **LocalStorage** persistence—no external backend or phone-calendar syncing  
+- **Start time and duration** for each event
 - **PWA installable** (“Add to Home Screen”)  
 - **Offline support** via Service Worker  
 
@@ -75,6 +76,8 @@ http://localhost:8000
 4. In the **Add Event** modal:
    - Enter **Title**  
    - Pick a **Date**  
+   - Set a **Start Time**
+   - Specify **Duration** in minutes
    - Choose a **Recurrence** (None/Daily/Weekly/Monthly)  
    - **Save**  
 
