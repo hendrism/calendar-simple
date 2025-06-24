@@ -64,10 +64,11 @@ function makeCell(date, monthFilter) {
   lbl.textContent = date.getDate();
   cell.appendChild(lbl);
 
-  getEventsForDate(date).forEach(ev => {
-    const evEl = document.createElement('div');
-    evEl.className = 'event';
-    evEl.textContent = ev.title;
+  const events = getEventsForDate(date).slice().sort((a,b) => (a.startTime || "").localeCompare(b.startTime || ""));
+  events.forEach(ev => {
+    const evEl = document.createElement("div");
+    evEl.className = "event";
+    evEl.textContent = (ev.startTime ? ev.startTime + " " : "") + ev.title;
     cell.appendChild(evEl);
   });
   return cell;
@@ -133,9 +134,11 @@ document.getElementById('cancelEventBtn').onclick  = () => modal.classList.add('
 document.getElementById('saveEventBtn').onclick    = () => {
   const title      = document.getElementById('eventTitle').value.trim();
   const date       = document.getElementById('eventDate').value;
+  const startTime = document.getElementById("eventStart").value;
+  const duration = parseInt(document.getElementById("eventDuration").value,10)||0;
   const recurrence = document.getElementById('eventRecurrence').value;
   if (title && date) {
-    addEvent({ id: Date.now(), title, date, recurrence });
+    addEvent({ id: Date.now(), title, date, startTime, duration, recurrence });
     modal.classList.add('hidden');
     render();
   }
